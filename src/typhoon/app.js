@@ -67,7 +67,11 @@ module.exports.app = function(root, configs, listen) {
   });
 
   if (listen !== false) {
-    app.listen(app.set('typhoon port'), app.set('typhoon host'));
+    if (app.set('typhoon host')) {
+      app.listen(app.set('typhoon port'), app.set('typhoon host'));
+    } else {
+      app.listen(app.set('typhoon port'));
+    }
   }
   
   return app;
